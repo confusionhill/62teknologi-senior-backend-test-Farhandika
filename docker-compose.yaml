@@ -1,0 +1,42 @@
+version: "3.2"
+services:
+#  rest-http:
+#    container_name: "rest-http"
+#    build:
+#      dockerfile: .dev/Dockerfile
+#      context: .
+#      args:
+#        CMD_SERVICE: http
+#    ports:
+#      - 4444:4444
+#  elasticsearch:
+#    container_name: "elastic-search"
+#    image: "docker.elastic.co/elasticsearch/elasticsearch:7.13.0"
+#    environment:
+#      - discovery.type=single-node
+#      - cluster.name=docker-cluster
+#      - bootstrap.memory_lock=true
+#      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+#    ulimits:
+#        memlock:
+#          soft: -1
+#          hard: -1
+#    ports:
+#      - 9200:9200
+#      - 9300:9300
+#    volumes:
+#      - esdata:/usr/share/elasticsearch/data
+#  volumes:
+#      esdata:
+#        driver: local
+  postgres-62:
+    container_name: "postgres-62"
+    image: "postgres:15.2-alpine"
+    environment:
+      POSTGRES_DB: db_name
+      POSTGRES_PASSWORD: db_password
+      POSTGRES_USER: user
+      TZ: Asia/Jakarta
+      PGTZ: Asia/Jakarta
+    ports:
+      - "5434:5432"
