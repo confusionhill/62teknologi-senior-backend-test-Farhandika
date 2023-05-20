@@ -1,4 +1,5 @@
 files/secrets/secrets.config.json
+build
 vendor
 *.exe
 *.exe~
