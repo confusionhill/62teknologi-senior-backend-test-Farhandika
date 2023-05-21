@@ -1,0 +1,153 @@
+{
+	"info": {
+		"_postman_id": "a8778525-edcc-4b15-81cc-79a826759782",
+		"name": "62-tech test",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Insert Business",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\"name\": \"Jiguko Senin\",\n\"term\": \"\",\n\"price\": 2000,\n\"location\": \"Indonesia\",\n\"latitude\": 9.0,\n\"longitude\": 8.0,\n\"radius\": 0.0,\n\"locale\": \"IND\",\n\"open_now\": false,\n\"category_ids\": [1,2,3]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{local}}/business"
+			},
+			"response": []
+		},
+		{
+			"name": "Update Business",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\": 1,\n\"name\": \"\",\n\"term\": \"\",\n\"price\": 0,\n\"location\": \"\",\n\"latitude\": 0.0,\n\"longitude\": 0.0,\n\"radius\": 0.0,\n\"locale\": \"\",\n\"open_now\": false,\n\"category_ids\": [1,2,3]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{local}}/business"
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Business",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\":2\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{local}}/business"
+			},
+			"response": []
+		},
+		{
+			"name": "Search",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{local}}/business/search?open_now=false",
+					"host": [
+						"{{local}}"
+					],
+					"path": [
+						"business",
+						"search"
+					],
+					"query": [
+						{
+							"key": "location",
+							"value": "location",
+							"disabled": true
+						},
+						{
+							"key": "latitude",
+							"value": "0",
+							"disabled": true
+						},
+						{
+							"key": "longitude",
+							"value": "0",
+							"disabled": true
+						},
+						{
+							"key": "term",
+							"value": "term",
+							"disabled": true
+						},
+						{
+							"key": "locale",
+							"value": "ENG",
+							"disabled": true
+						},
+						{
+							"key": "price",
+							"value": "0",
+							"disabled": true
+						},
+						{
+							"key": "open_now",
+							"value": "false"
+						},
+						{
+							"key": "offset",
+							"value": "10",
+							"disabled": true
+						},
+						{
+							"key": "page",
+							"value": "1",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "local",
+			"value": "localhost:4444"
+		}
+	]
+}

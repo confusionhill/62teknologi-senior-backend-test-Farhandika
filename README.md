@@ -14,6 +14,7 @@
 6. If you want to run a specific service, run `SVCNAME={SERVICE_NAME} make services-up`
 7. If database is not connected, please restart the http service
 7. You can check all the commands available on `Makefile`
+8. If you want to check the api docs, go to `files->docs`
 
 # Maintainer
 18220015@std.stei.itb.ac.id (Farhandika Zahrir Mufti Guenia)
