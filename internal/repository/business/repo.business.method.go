@@ -79,7 +79,7 @@ func (r *Repository) GetBusinesses(ctx context.Context, req dto.SearchBusinessDT
 	}
 
 	if req.Longitude == 0 && req.Latitude == 0 {
-		query = "select * from businesses where term ~ ? and locale ~ ? and location ~ ? and open_now limit ? offset ?"
+		query = "select * from businesses where term ~ ? and locale ~ ? and location ~ ? and open_now = ? limit ? offset ?"
 		err := r.Database.Raw(query, req.Term, req.Locale, req.Location, req.OpenNow, req.Limit, offset).Scan(&resp).Error
 		return resp, err
 	}
