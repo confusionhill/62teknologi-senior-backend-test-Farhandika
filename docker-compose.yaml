@@ -1,14 +1,5 @@
 version: "3.2"
 services:
-#  rest-http:
-#    container_name: "rest-http"
-#    build:
-#      dockerfile: .dev/Dockerfile
-#      context: .
-#      args:
-#        CMD_SERVICE: http
-#    ports:
-#      - 4444:4444
 #  elasticsearch:
 #    container_name: "elastic-search"
 #    image: "docker.elastic.co/elasticsearch/elasticsearch:7.13.0"
@@ -40,3 +31,14 @@ services:
       PGTZ: Asia/Jakarta
     ports:
       - "5434:5432"
+  rest-http:
+    container_name: "rest-http"
+    build:
+      dockerfile: .dev/Dockerfile
+      context: .
+      args:
+        CMD_SERVICE: http
+    depends_on:
+      - postgres-62
+    ports:
+      - 4444:4444

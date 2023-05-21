@@ -3,13 +3,16 @@ package dto
 import "time"
 
 type InsertBusinessDTO struct {
-	Name      string  `json:"name" validate:"required"`
-	Term      string  `json:"term"`
-	Price     int     `json:"price"`
-	Location  string  `json:"location" validate:"required"`
-	Latitude  float64 `json:"latitude" validate:"required"`
-	Longitude float64 `json:"longitude" validate:"required"`
-	Radius    float64 `json:"radius"`
+	Name        string   `json:"name" validate:"required"`
+	Term        string   `json:"term"`
+	Price       int      `json:"price"`
+	Location    string   `json:"location" validate:"required"`
+	Latitude    float64  `json:"latitude" validate:"required"`
+	Longitude   float64  `json:"longitude" validate:"required"`
+	Radius      float64  `json:"radius"`
+	Locale      string   `json:"locale"`
+	OpenNow     bool     `json:"open_now"`
+	CategoryIDS []uint64 `json:"category_ids"`
 }
 
 type DeleteBusinessDTO struct {
@@ -22,14 +25,17 @@ type InsertBusinessResponseDTO struct {
 }
 
 type UpdateBusinessDTO struct {
-	ID        uint    `json:"id" validate:"required"`
-	Name      string  `json:"name" validate:"required"`
-	Term      string  `json:"term"`
-	Price     int     `json:"price"`
-	Location  string  `json:"location" validate:"required"`
-	Latitude  float64 `json:"latitude" validate:"required"`
-	Longitude float64 `json:"longitude" validate:"required"`
-	Radius    float64 `json:"radius"`
+	ID          uint     `json:"id" validate:"required"`
+	Name        string   `json:"name" validate:"required"`
+	Term        string   `json:"term"`
+	Price       int      `json:"price"`
+	Location    string   `json:"location" validate:"required"`
+	Latitude    float64  `json:"latitude" validate:"required"`
+	Longitude   float64  `json:"longitude" validate:"required"`
+	Radius      float64  `json:"radius"`
+	Locale      string   `json:"locale"`
+	OpenNow     bool     `json:"open_now"`
+	CategoryIDS []uint64 `json:"category_ids"`
 }
 
 type SearchBusinessDTO struct {
@@ -42,6 +48,7 @@ type SearchBusinessDTO struct {
 	Locale    string
 	OpenNow   bool
 	OpenAT    string
+	Price     int64
 }
 
 type BusinessDTO struct {

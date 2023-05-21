@@ -26,6 +26,8 @@ func InitResource(cfg *config.MainConfig) (*CommonResource, error) {
 		return nil, err
 	}
 	godb.AutoMigrate(&entity.Business{})
+	godb.AutoMigrate(&entity.Category{})
+	godb.AutoMigrate(&entity.BusinessCategory{})
 	r.Database = godb
 	log.Println("DATABASE INITIATED!")
 

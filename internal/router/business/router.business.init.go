@@ -22,5 +22,5 @@ func (r *Router) Register(e *echo.Echo) {
 	g.POST("", r.AddBusiness)
 	g.PUT("", r.EditBusiness)
 	g.DELETE("", r.DeleteBusiness)
-	g.GET("/search", r.GetBusiness)
+	g.GET("/search", r.GetBusinesses)
 }

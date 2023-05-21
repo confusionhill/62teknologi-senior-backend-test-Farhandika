@@ -12,4 +12,4 @@ RUN  go build -o build/http-rest application/rest/*.go
 
 EXPOSE 50051
 
-CMD [ "./build/nms-rest" ]
+CMD [ "./build/http-rest" ]

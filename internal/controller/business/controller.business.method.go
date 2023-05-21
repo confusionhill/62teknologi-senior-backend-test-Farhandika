@@ -16,8 +16,10 @@ func (c *Controller) InsertNewBusiness(ctx context.Context, req dto.InsertBusine
 		Latitude:  req.Latitude,
 		Longitude: req.Longitude,
 		Radius:    req.Radius,
+		Locale:    req.Locale,
+		OpenNow:   req.OpenNow,
 	}
-	resp, err := c.repository.InsertNewBusiness(ctx, business)
+	resp, err := c.repository.InsertNewBusiness(ctx, business, req.CategoryIDS)
 	if err != nil {
 		return nil, err
 	}
@@ -35,12 +37,14 @@ func (c *Controller) UpdateBusiness(ctx context.Context, req dto.UpdateBusinessD
 		Name:      req.Name,
 		Term:      req.Term,
 		Price:     req.Price,
+		OpenNow:   req.OpenNow,
 		Location:  req.Location,
 		Latitude:  req.Latitude,
 		Longitude: req.Longitude,
 		Radius:    req.Radius,
+		Locale:    req.Locale,
 	}
-	resp, err := c.repository.UpdateBusiness(ctx, business)
+	resp, err := c.repository.UpdateBusiness(ctx, business, req.CategoryIDS)
 	if err != nil {
 		return nil, err
 	}

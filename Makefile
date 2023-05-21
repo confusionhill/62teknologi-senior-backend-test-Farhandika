@@ -1,9 +1,10 @@
-rest-up:
-	docker compose up -d
-rest-stop:
+services-up:
+	@echo "SVCNAME=${SVCNAME}"
+	docker-compose -f docker-compose.yaml up --build ${SVCNAME}
+services-stop:
 	docker compose stop
-rest-down:
-	docker compose down
+services-down:
+	docker compose docker-compose.yaml down
 init:
 	go mod vendor
 	echo "Project initiated"

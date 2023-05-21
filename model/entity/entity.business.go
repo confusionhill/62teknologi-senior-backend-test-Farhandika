@@ -23,3 +23,8 @@ type Category struct {
 	ID   uint   `gorm:"primarykey"`
 	Name string `gorm:"not null"`
 }
+
+type BusinessCategory struct {
+	BusinessID uint   `gorm:"not null"`
+	CategoryID uint64 `gorm:"not null"`
+}

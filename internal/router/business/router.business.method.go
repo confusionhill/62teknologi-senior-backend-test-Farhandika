@@ -115,7 +115,7 @@ func (r *Router) DeleteBusiness(c echo.Context) error {
 	})
 }
 
-func (r *Router) GetBusiness(c echo.Context) error {
+func (r *Router) GetBusinesses(c echo.Context) error {
 	strPage := c.QueryParam("page")
 	if strPage == "" {
 		strPage = "1"
@@ -149,9 +149,15 @@ func (r *Router) GetBusiness(c echo.Context) error {
 		return err
 	}
 	strOpenNow := c.QueryParam("open_now")
-	openNow := false
-	if strOpenNow == "true" {
-		openNow = true
+	openNow := true
+	if strOpenNow == "false" {
+		openNow = false
+	}
+
+	strPrice := c.QueryParam("price")
+	price, err := strconv.ParseInt(strPrice, 10, 64)
+	if err != nil {
+		price = 0
 	}
 	req := dto.SearchBusinessDTO{
 		Page:      page,
@@ -163,15 +169,16 @@ func (r *Router) GetBusiness(c echo.Context) error {
 		Locale:    c.QueryParam("locale"),
 		OpenNow:   openNow,
 		OpenAT:    c.QueryParam("open_at"),
+		Price:     price,
 	}
 
 	ctx := c.Request().Context()
-	if req.Location == "" && req.Longitude == 0 && req.Latitude == 0 {
-		return c.JSON(http.StatusBadRequest, dto.ResponseWrapper{
-			Status: http.StatusBadRequest,
-			Msg:    "location or longitude and latitude is not provided",
-		})
-	}
+	//if req.Location == "" && req.Longitude == 0 && req.Latitude == 0 {
+	//	return c.JSON(http.StatusBadRequest, dto.ResponseWrapper{
+	//		Status: http.StatusBadRequest,
+	//		Msg:    "location or longitude and latitude is not provided",
+	//	})
+	//}
 	resp, err := r.controller.SearchBusiness(ctx, req)
 	if err != nil {
 		log.Error(err)
