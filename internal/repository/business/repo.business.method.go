@@ -65,25 +65,25 @@ func (r *Repository) DeleteBusiness(ctx context.Context, uid uint) error {
 func (r *Repository) GetBusinesses(ctx context.Context, req dto.SearchBusinessDTO) ([]entity.Business, error) {
 	resp := []entity.Business{}
 	offset := (req.Page - 1) * req.Limit
-	query := "select * from businesses where term ~ ? and locale ~ ? and longitude = ? and latitude = ? limit ? offset ?"
+	query := "select * from businesses where term ~ ? and locale ~ ? and longitude = ? and latitude = ? and open_now = ? limit ? offset ?"
 
 	if req.Price != 0 {
-		query = "select * from businesses where term ~ ? and locale ~ ? and price = ? and longitude = ? and latitude = ? limit ? offset ?"
+		query = "select * from businesses where term ~ ? and locale ~ ? and price = ? and longitude = ? and latitude = ? and open_now = ? limit ? offset ?"
 		if req.Longitude == 0 && req.Latitude == 0 {
-			query = "select * from businesses where price = ? and term ~ ? and locale ~ ? and location ~ ? limit ? offset ?"
-			err := r.Database.Raw(query, req.Price, req.Term, req.Locale, req.Location, req.Limit, offset).Scan(&resp).Error
+			query = "select * from businesses where price = ? and term ~ ? and locale ~ ? and location ~ ? and open_now limit ? offset ?"
+			err := r.Database.Raw(query, req.Price, req.Term, req.Locale, req.Location, req.OpenNow, req.Limit, offset).Scan(&resp).Error
 			return resp, err
 		}
-		err := r.Database.Raw(query, req.Term, req.Locale, req.Price, req.Longitude, req.Latitude, req.Limit, offset).Scan(&resp).Error
+		err := r.Database.Raw(query, req.Term, req.Locale, req.Price, req.Longitude, req.Latitude, req.OpenNow, req.Limit, offset).Scan(&resp).Error
 		return resp, err
 	}
 
 	if req.Longitude == 0 && req.Latitude == 0 {
-		query = "select * from businesses where term ~ ? and locale ~ ? and location ~ ? limit ? offset ?"
-		err := r.Database.Raw(query, req.Term, req.Locale, req.Location, req.Limit, offset).Scan(&resp).Error
+		query = "select * from businesses where term ~ ? and locale ~ ? and location ~ ? and open_now limit ? offset ?"
+		err := r.Database.Raw(query, req.Term, req.Locale, req.Location, req.OpenNow, req.Limit, offset).Scan(&resp).Error
 		return resp, err
 	}
 
-	err := r.Database.Raw(query, req.Term, req.Locale, req.Longitude, req.Latitude, req.Limit, offset).Scan(&resp).Error
+	err := r.Database.Raw(query, req.Term, req.Locale, req.Longitude, req.Latitude, req.OpenNow, req.Limit, offset).Scan(&resp).Error
 	return resp, err
 }
